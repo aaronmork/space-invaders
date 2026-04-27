@@ -37,8 +37,6 @@ public class GameModel {
     private static final int ALIEN_STARTING_Y = 30;
     
     // Projectile dimensions
-    private static final int BULLET_WIDTH = 5;
-    private static final int BULLET_HEIGHT = 15;
     private static final int BULLET_SPEED = 10;
     private static final int ALIEN_BULLET_SPEED = 6;
     
@@ -491,8 +489,6 @@ public class GameModel {
     public static class Bullet {
         public int x;
         public int y;
-        private static final int WIDTH = 5;
-        private static final int HEIGHT = 15;
         
         public Bullet(int x, int y) {
             this.x = x;

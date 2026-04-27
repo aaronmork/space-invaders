@@ -10,3 +10,6 @@ Fill in GameModel.java. The model should track: the player's horizontal position
 Result: It has 4 lines where values weren't being used in Java. I was on edge on if I should get rid of them now, or wait to see later on they do get used. I decided to wait until later since it didn't cause problems yet.
 
 Prompt 3:
+Fill in GameView.java. It should take a reference to the model and draw everything the player sees: the player, the alien formation, both sets of bullets, the score, and remaining lives. Show a centered game-over message when the game ends. The view should only read from the model — it must never change game state.
+
+Result: After I committed I went to see how the game looked. The window wouldn't open and just game me a window with my files.
