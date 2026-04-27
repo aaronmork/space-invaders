@@ -1,4 +1,6 @@
 import javax.swing.JFrame;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 /**
  * GameController.java
@@ -13,11 +15,12 @@ import javax.swing.JFrame;
  * - Handle keyboard input
  * - Manage the execution flow
  */
-public class GameController {
+public class GameController implements KeyListener {
     
     private GameModel model;
     private GameView view;
     private JFrame frame;
+    private boolean running;
     
     /**
      * Constructs the game controller and initializes all components.
@@ -44,8 +47,36 @@ public class GameController {
      */
     public void start() {
         model.start();
-        // TODO: Start game loop
-        // TODO: Set up input handlers
+        
+        // Set up keyboard input
+        view.addKeyListener(this);
+        
+        // Start the game loop
+        running = true;
+        Thread gameLoopThread = new Thread(() -> {
+            long lastTime = System.nanoTime();
+            double amountOfTicks = 60.0; // 60 FPS
+            double ns = 1000000000 / amountOfTicks;
+            double delta = 0;
+            
+            while (running) {
+                long now = System.nanoTime();
+                delta += (now - lastTime) / ns;
+                lastTime = now;
+                
+                if (delta >= 1) {
+                    // Update game state
+                    model.update();
+                    
+                    // Repaint the view
+                    view.repaint();
+                    
+                    delta--;
+                }
+            }
+        });
+        gameLoopThread.setDaemon(true);
+        gameLoopThread.start();
     }
     
     /**
@@ -57,5 +88,43 @@ public class GameController {
     public static void main(String[] args) {
         GameController controller = new GameController();
         controller.start();
+    }
+    
+    /**
+     * Handles key press events for player input.
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        
+        if (key == KeyEvent.VK_LEFT) {
+            model.movePlayerLeft();
+        } else if (key == KeyEvent.VK_RIGHT) {
+            model.movePlayerRight();
+        } else if (key == KeyEvent.VK_SPACE) {
+            model.firePlayerBullet();
+        }
+    }
+    
+    /**
+     * Handles key release events for player input.
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        
+        if (key == KeyEvent.VK_LEFT) {
+            model.stopPlayerLeft();
+        } else if (key == KeyEvent.VK_RIGHT) {
+            model.stopPlayerRight();
+        }
+    }
+    
+    /**
+     * Handles key typed events (not used in this game).
+     */
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Not used
     }
 }

@@ -13,3 +13,6 @@ Prompt 3:
 Fill in GameView.java. It should take a reference to the model and draw everything the player sees: the player, the alien formation, both sets of bullets, the score, and remaining lives. Show a centered game-over message when the game ends. The view should only read from the model — it must never change game state.
 
 Result: After I committed I went to see how the game looked. The window wouldn't open and just game me a window with my files.
+
+Prompt 4:
+I asked at to find the compiling error, and it turns out the 4 lines were the issue. After removing those I tried one again, but got hit with the same issue.
