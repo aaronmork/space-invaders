@@ -15,4 +15,11 @@ Fill in GameView.java. It should take a reference to the model and draw everythi
 Result: After I committed I went to see how the game looked. The window wouldn't open and just game me a window with my files.
 
 Prompt 4:
-I asked at to find the compiling error, and it turns out the 4 lines were the issue. After removing those I tried one again, but got hit with the same issue.
+I asked at to find the compiling error, and it turns out the 4 lines were the issue.
+
+Result:
+After removing those I tried one again, but got hit with the same issue.
+
+Prompt 5: I told AI the window was not opening when going live. I asked to find the compile issue.
+
+Result: It changed an event handler, this seemed to have worked and now I will try and attempt to compile.
